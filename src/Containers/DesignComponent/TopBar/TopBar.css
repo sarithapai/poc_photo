@@ -1,0 +1,5 @@
+.top-bar{
+  grid-column: 1 / 3;
+  background-color: var(--secondary-background);
+  border: 2px solid var(--primary-background)
+}

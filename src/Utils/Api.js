@@ -1,4 +1,5 @@
 import { API_END_POINT, STORE_CONTENT_TOKEN } from './Constants';
+import axios from 'axios';
 
 export function sendUploadFile(data, config) {
   config.headers = { 'content-token': STORE_CONTENT_TOKEN };

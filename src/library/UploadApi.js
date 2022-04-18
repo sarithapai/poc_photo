@@ -1,7 +1,8 @@
-import { getUploadedFile, sendUploadFile } from '../Utils/api';
+import { getUploadedFile, sendUploadFile } from '../Utils/Api';
 import { ERROR, FAILED, STORE_ID } from '../Utils/Constants';
 
-export const uploadPhoto = (inUploadFile) => {
+export const uploadPhoto = inUploadFile => {
+  console.log('inside upload photo');
   const formData = new FormData();
   formData.append('user_photo[printable_image]', inUploadFile);
   formData.append('user_photo[user_photo_type]', 'UserPhotoScene');
@@ -10,7 +11,7 @@ export const uploadPhoto = (inUploadFile) => {
   formData.append('store_id', STORE_ID);
 
   const config = {
-    onUploadProgress: (progressEvent) => {
+    onUploadProgress: progressEvent => {
       const totalLength = progressEvent.lengthComputable
         ? progressEvent.total
         : progressEvent.target.getResponseHeader('content-length') ||
@@ -26,12 +27,12 @@ export const uploadPhoto = (inUploadFile) => {
         );
         console.log('progressData', progressData);
       }
-    },
+    }
   };
 
-  sendUploadFile(formData, config).then((postResponse) => {
+  sendUploadFile(formData, config).then(postResponse => {
     getResponse(getUploadedFile, postResponse.data.id, 10000)
-      .then((res) => {
+      .then(res => {
         uploadIsCompleted(res);
       })
       .catch(() => {});
@@ -45,7 +46,7 @@ const getResponse = async (func, id, time) => {
   let data = {};
 
   async function checkUploadIsCompleted() {
-    func(id, STORE_ID).then((res) => {
+    func(id, STORE_ID).then(res => {
       if (res.data.result === 'SUCCESS') {
         success = true;
         data = res.data;
@@ -57,12 +58,12 @@ const getResponse = async (func, id, time) => {
   }
   while (retries-- > 0 && !success && !failed) {
     checkUploadIsCompleted();
-    await new Promise((resolve) => setTimeout(resolve, time));
+    await new Promise(resolve => setTimeout(resolve, time));
   }
   return data;
 };
 
-const uploadIsCompleted = (res) => {
+const uploadIsCompleted = res => {
   if (Object.keys(res).length == 0) {
     console.log('UPLOAD ERROR');
   } else if (res.result === ERROR || res.result === FAILED) {

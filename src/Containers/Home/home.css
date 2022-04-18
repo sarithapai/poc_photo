@@ -1,0 +1,19 @@
+/* $bgPrimary: rgb(60, 60, 60); */
+body{
+  --primary-background: #2e2f2f;
+  --secondary-background: #5a5858;
+  --text-white: #dadada;
+}
+.main-wrapper{
+  display: grid;
+  color: var(--text-white);
+  height: 100vh;
+}
+
+.show-side-bar{
+  grid-template-columns: 20% auto;
+}
+
+.hide-side-bar{
+  grid-template-columns: 0px 100%;
+}
