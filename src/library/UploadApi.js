@@ -1,5 +1,5 @@
 import { getUploadedFile, sendUploadFile } from '../Utils/api';
-import { STORE_ID } from '../Utils/Constants';
+import { ERROR, FAILED, STORE_ID } from '../Utils/Constants';
 
 export const uploadPhoto = (inUploadFile) => {
   const formData = new FormData();
@@ -49,10 +49,7 @@ const getResponse = async (func, id, time) => {
       if (res.data.result === 'SUCCESS') {
         success = true;
         data = res.data;
-      } else if (
-        res.data.result === Constants.FAILED ||
-        res.data.result === Constants.ERROR
-      ) {
+      } else if (res.data.result === FAILED || res.data.result === ERROR) {
         failed = true;
         data = res.data;
       }
@@ -68,10 +65,7 @@ const getResponse = async (func, id, time) => {
 const uploadIsCompleted = (res) => {
   if (Object.keys(res).length == 0) {
     console.log('UPLOAD ERROR');
-  } else if (
-    res.result === Constants.ERROR ||
-    res.result === Constants.FAILED
-  ) {
+  } else if (res.result === ERROR || res.result === FAILED) {
     console.log('ERROR', res.reason);
   } else {
     console.log('UPLOAD SUCCESS', res);
