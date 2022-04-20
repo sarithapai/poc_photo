@@ -1,7 +1,7 @@
 import React from 'react';
 import DesignComponent from '../DesignComponent/DesignComponent.jsx';
 import SideBar from '../SideBar/SideBar.jsx';
-import './home.css';
+import './Home.css';
 // import { useState } from 'react';
 
 const Home = () => {

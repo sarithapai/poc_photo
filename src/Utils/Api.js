@@ -1,8 +1,8 @@
-import { API_END_POINT, STORE_CONTENT_TOKEN } from './Constants';
+import { API_END_POINT } from './Constants';
 import axios from 'axios';
 
 export function sendUploadFile(data, config) {
-  config.headers = { 'content-token': STORE_CONTENT_TOKEN };
+  config.headers = { 'designer-source': 'hp-poc-designer' };
   return axios.post(`${API_END_POINT}/content/user_photos`, data, config);
 }
 
