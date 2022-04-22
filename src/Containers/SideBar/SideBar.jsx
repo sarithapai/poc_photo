@@ -3,22 +3,33 @@ import './SideBar.css';
 import { uploadPhoto } from '../../Library/UploadApi';
 import { Icons } from '../../Utils/Icons';
 
-const SideBar = () => {
+const SideBar = props => {
+  const { showSideBar, updateImage } = props;
   const [selectedFile, setSelectedFile] = useState(null);
 
-  const uploadFile = (file) => {
-    console.log('uploadFile');
-    uploadPhoto(file);
+  const uploadFile = async file => {
+    let result = await uploadPhoto(file);
+
+    if (result.image_path) {
+      updateImage(result);
+    }
   };
 
   return (
-    <div className='side-bar-wrapper'>
+    <div
+      className={
+        showSideBar
+          ? 'side-bar-wrapper show-side-bar'
+          : 'side-bar-wrapper hide-side-bar'
+      }
+      // className='side-bar-wrapper'
+    >
       <div className='add-photos'>
         <label>
           <img alt='Add Photos' src={Icons.addPhotosIcon} />
           <input
             type='file'
-            onChange={(e) => {
+            onChange={e => {
               setSelectedFile(e.target.files[0]);
               uploadFile(e.target.files[0]);
             }}

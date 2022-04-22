@@ -1,7 +1,0 @@
-.design-wrapper{
-  background-color: var(--primary-background);
-  
-  display: grid;
-  grid-template-rows: 40px auto;
-  grid-template-columns: auto 40px;
-}

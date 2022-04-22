@@ -1,0 +1,9 @@
+.tool-bar{
+  background-color: var(--secondary-background);
+  img {
+    padding: 10px;
+  }
+  img:hover {
+    background-color: var(--primary-background);
+  }
+}

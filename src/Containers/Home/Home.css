@@ -5,15 +5,17 @@ body{
   --text-white: #dadada;
 }
 .main-wrapper{
-  display: grid;
   color: var(--text-white);
   height: 100vh;
+  /* grid-template-columns: 20% auto; */
+  background-color: var(--primary-background);
+  transition: 0.5s;
+  display: flex;
+ 
 }
 
-.show-side-bar{
-  grid-template-columns: 20% auto;
+img {
+  width: 20px;
+  height: 20px;
 }
 
-.hide-side-bar{
-  grid-template-columns: 0px 100%;
-}
