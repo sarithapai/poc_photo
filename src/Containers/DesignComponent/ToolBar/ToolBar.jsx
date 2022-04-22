@@ -1,7 +1,7 @@
 import React from 'react';
 import './ToolBar.scss';
 import { Icons } from '../../../Utils/Icons';
-import { CROP, ROTATE } from '../../../Utils/Constants';
+import { CROP, FLIP } from '../../../Utils/Constants';
 
 const ToolBar = () => {
   const tools = [
@@ -12,8 +12,8 @@ const ToolBar = () => {
       img_url: Icons.addPhotosIcon
     },
     {
-      name: ROTATE,
-      alt_text: 'Rotate',
+      name: FLIP,
+      alt_text: 'FLIP',
       // tab_id: TAB_KEY,
       img_url: Icons.addPhotosIcon
     }
