@@ -1,7 +1,8 @@
 /* $bgPrimary: rgb(60, 60, 60); */
 body{
-  --primary-background: #2e2f2f;
-  --secondary-background: #5a5858;
+  --primary-background: #181818;
+  /* --secondary-background: #5a5858; */
+  --secondary-background: #2d2d2d;
   --text-white: #dadada;
 }
 .main-wrapper{
@@ -15,7 +16,7 @@ body{
 }
 
 img {
-  width: 20px;
-  height: 20px;
+  width: 30px;
+  height: 30px;
 }
 

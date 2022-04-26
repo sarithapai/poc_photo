@@ -10,13 +10,13 @@ const ToolBar = props => {
       name: CROP,
       alt_text: 'Crop',
       // tab_id: TAB_KEY,
-      img_url: Icons.addPhotosIcon
+      img_url: Icons.crop
     },
     {
       name: FLIP,
       alt_text: 'FLIP',
       // tab_id: TAB_KEY,
-      img_url: Icons.addPhotosIcon
+      img_url: Icons.flip
     }
   ];
   const handleClick = option => {
