@@ -64,50 +64,15 @@ const DesignComponent = (props) => {
     new fabric.Canvas('viewport', {
       preserveObjectStacking: true,
       backgroundColor: '#ffffff',
-      includeDefaultValues: true,
+      includeDefaultValues: true
     });
 
   const flip = () => {
-    var canvasWrapper = document.getElementById('canvas-wrapper');
-    var height = canvasWrapper.offsetHeight;
-    var width = canvasWrapper.offsetWidth;
-    var new_w = height;
-    var new_h = width;
-
-    canvasWrapper.style.width = new_w + 'px';
-    canvasWrapper.style.height = new_h + 'px';
-    canvas.setDimensions({ width: new_w, height: new_h });
-
-    var angleChange = canvas.height >= canvas.width ? 90 : -90;
-
+    console.log('flipping');
     var objs = canvas.getObjects();
     objs.forEach(function (obj) {
-      var angleval = obj.get('angle');
-      var val = angleval + angleChange;
-      val = val % 360;
-
-      var posval = {
-        top: obj.get('top'),
-        left: obj.get('left'),
-      };
-
-      var newleft, newtop;
-
-      if (canvas.height >= canvas.width) {
-        newleft = canvas.width - posval.top;
-        newtop = posval.left;
-      } else {
-        newleft = posval.top;
-        newtop = canvas.height - posval.left;
-      }
-
-      obj.rotate(val);
-      obj.set({
-        left: newleft,
-        top: newtop,
-      });
-
-      obj.setCoords();
+      obj.toggle('flipX');
+      canvas.renderAll();
     });
   };
 
