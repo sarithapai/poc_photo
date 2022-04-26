@@ -6,7 +6,7 @@ import TopBar from './TopBar/TopBar.jsx';
 import ToolBar from './ToolBar/ToolBar.jsx';
 // import { downloadCanvas } from '../../Library/Download';
 
-const DesignComponent = props => {
+const DesignComponent = (props) => {
   const { image } = props;
   const [canvas, setCanvas] = useState(null);
 
@@ -22,39 +22,41 @@ const DesignComponent = props => {
       // const image_path =
       //   'https://d3mx9szhm1i4e3.cloudfront.net/user_photos/images/180499/original/c6dd0286-a971-f96a-25ce-db90aaeafd8e_IMG_20220411_11381720220421-29787-1h47el0-0_1650534293.png?1650534293';
 
-      new fabric.Image.fromURL(image_path, function (myImg) {
-        console.log('image details:', myImg);
+      new fabric.Image.fromURL(
+        image_path,
+        function (myImg) {
+          var designWrapper = document.getElementById('design-wrapper');
+          var canvasWrapper = document.getElementById('canvas-wrapper');
 
-        var designWrapper = document.getElementById('design-wrapper');
-        var canvasWrapper = document.getElementById('canvas-wrapper');
+          var designWrapperWidth = designWrapper.clientWidth;
 
-        var designWrapperWidth = designWrapper.clientWidth;
+          let imgWidth = myImg.width;
+          let imgHeight = myImg.height;
+          let aspectRatio = imgHeight / imgWidth;
+          let canvasWidth = designWrapperWidth;
 
-        let imgWidth = myImg.width;
-        let imgHeight = myImg.height;
-        let aspectRatio = imgHeight / imgWidth;
-        let canvasWidth = designWrapperWidth;
+          let canvasHeight = designWrapperWidth * aspectRatio;
+          var scaleFactor = canvasWidth / imgWidth;
+          var img1 = myImg.set({
+            left: 0,
+            top: 0,
+            originX: 'left',
+            originY: 'top',
+            width: imgWidth,
+            height: imgHeight,
+            scaleX: scaleFactor,
+            scaleY: scaleFactor,
+          });
 
-        let canvasHeight = designWrapperWidth * aspectRatio;
-        var scaleFactor = canvasWidth / imgWidth;
-        var img1 = myImg.set({
-          left: 0,
-          top: 0,
-          originX: 'left',
-          originY: 'top',
-          width: imgWidth,
-          height: imgHeight,
-          scaleX: scaleFactor,
-          scaleY: scaleFactor
-        });
-
-        canvas.setWidth(canvasWidth);
-        canvas.setHeight(canvasHeight);
-        canvasWrapper.style.width = `${canvasWidth}px`;
-        canvasWrapper.style.height = `${canvasHeight}px`;
-        canvas.add(img1);
-        canvas.renderAll();
-      });
+          canvas.setWidth(canvasWidth);
+          canvas.setHeight(canvasHeight);
+          canvasWrapper.style.width = `${canvasWidth}px`;
+          canvasWrapper.style.height = `${canvasHeight}px`;
+          canvas.add(img1);
+          canvas.renderAll();
+        },
+        { crossOrigin: 'Anonymous' }
+      );
     }
   }, [canvas, image]);
 
@@ -62,7 +64,7 @@ const DesignComponent = props => {
     new fabric.Canvas('viewport', {
       preserveObjectStacking: true,
       backgroundColor: '#ffffff',
-      includeDefaultValues: true
+      includeDefaultValues: true,
     });
 
   const flip = () => {
@@ -86,7 +88,7 @@ const DesignComponent = props => {
 
       var posval = {
         top: obj.get('top'),
-        left: obj.get('left')
+        left: obj.get('left'),
       };
 
       var newleft, newtop;
@@ -102,7 +104,7 @@ const DesignComponent = props => {
       obj.rotate(val);
       obj.set({
         left: newleft,
-        top: newtop
+        top: newtop,
       });
 
       obj.setCoords();
