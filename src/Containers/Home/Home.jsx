@@ -11,13 +11,14 @@ const Home = () => {
   const [image, setImage] = useState(null);
 
   const toggleSideBar = () => {
-    setShowSideBar(SideBar => !SideBar);
+    setShowSideBar((SideBar) => !SideBar);
   };
 
-  const updateImage = image => {
+  const updateImage = (image) => {
     console.log('updating thr image');
     setImage(image);
   };
+
   return (
     <>
       <div className='main-wrapper'>

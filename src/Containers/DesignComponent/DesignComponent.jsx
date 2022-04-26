@@ -6,14 +6,14 @@ import TopBar from './TopBar/TopBar.jsx';
 import ToolBar from './ToolBar/ToolBar.jsx';
 // import { downloadCanvas } from '../../Library/Download';
 
-const DesignComponent = props => {
+const DesignComponent = (props) => {
   const { image } = props;
   console.log('image', image);
   useEffect(() => {
     const canvas = new fabric.Canvas('viewport', {
       preserveObjectStacking: true,
       backgroundColor: '#ffffff',
-      includeDefaultValues: true
+      includeDefaultValues: true,
     });
 
     if (image != null) {
@@ -24,15 +24,17 @@ const DesignComponent = props => {
       new fabric.Image.fromURL(image_path, function (myImg) {
         console.log('image details:', myImg);
 
+        var designWrapper = document.getElementById('design-wrapper');
         var canvasWrapper = document.getElementById('canvas-wrapper');
-        var canvasWrapperWidth = canvasWrapper.clientWidth;
+
+        var designWrapperWidth = designWrapper.clientWidth;
 
         let imgWidth = myImg.width;
         let imgHeight = myImg.height;
         let aspectRatio = imgHeight / imgWidth;
-        let canvasWidth = canvasWrapperWidth;
+        let canvasWidth = designWrapperWidth;
 
-        let canvasHeight = canvasWrapperWidth * aspectRatio;
+        let canvasHeight = designWrapperWidth * aspectRatio;
         var scaleFactor = canvasWidth / imgWidth;
         var img1 = myImg.set({
           left: 0,
@@ -42,18 +44,21 @@ const DesignComponent = props => {
           width: imgWidth,
           height: imgHeight,
           scaleX: scaleFactor,
-          scaleY: scaleFactor
+          scaleY: scaleFactor,
         });
         // img1.setAttribute('crossorigin', 'anonymous');
         canvas.setWidth(canvasWidth);
         canvas.setHeight(canvasHeight);
+        canvasWrapper.style.width = `${canvasWidth}px`;
+        canvasWrapper.style.height = `${canvasHeight}px`;
         canvas.add(img1);
+        canvas.renderAll();
       });
     }
   });
 
   return (
-    <div className='design-wrapper'>
+    <div id='design-wrapper'>
       <TopBar />
 
       <div className='canvas-wrapper' id='canvas-wrapper'>
