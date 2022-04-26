@@ -9,9 +9,9 @@
 
   .canvas-wrapper {
     margin: auto;
-
-    .canvas {
-      box-shadow: 0px 0px 10px 10px #1c1b1b;
-    }
+    pointer-events: none;
+      .canvas {
+        box-shadow: 0px 0px 10px 10px #1c1b1b;
+      }
   }
 }

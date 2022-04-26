@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import './DesignComponent.scss';
 // import { Icons } from '../../Utils/Icons';
 import { fabric } from 'fabric';
@@ -6,16 +6,17 @@ import TopBar from './TopBar/TopBar.jsx';
 import ToolBar from './ToolBar/ToolBar.jsx';
 // import { downloadCanvas } from '../../Library/Download';
 
-const DesignComponent = (props) => {
+const DesignComponent = props => {
   const { image } = props;
-  console.log('image', image);
-  useEffect(() => {
-    const canvas = new fabric.Canvas('viewport', {
-      preserveObjectStacking: true,
-      backgroundColor: '#ffffff',
-      includeDefaultValues: true,
-    });
+  const [canvas, setCanvas] = useState(null);
 
+  console.log('image', image);
+
+  useEffect(() => {
+    setCanvas(initCanvas());
+  }, []);
+
+  useEffect(() => {
     if (image != null) {
       const image_path = image.image_path;
       // const image_path =
@@ -44,9 +45,9 @@ const DesignComponent = (props) => {
           width: imgWidth,
           height: imgHeight,
           scaleX: scaleFactor,
-          scaleY: scaleFactor,
+          scaleY: scaleFactor
         });
-        // img1.setAttribute('crossorigin', 'anonymous');
+
         canvas.setWidth(canvasWidth);
         canvas.setHeight(canvasHeight);
         canvasWrapper.style.width = `${canvasWidth}px`;
@@ -55,7 +56,58 @@ const DesignComponent = (props) => {
         canvas.renderAll();
       });
     }
-  });
+  }, [canvas, image]);
+
+  const initCanvas = () =>
+    new fabric.Canvas('viewport', {
+      preserveObjectStacking: true,
+      backgroundColor: '#ffffff',
+      includeDefaultValues: true
+    });
+
+  const flip = () => {
+    var canvasWrapper = document.getElementById('canvas-wrapper');
+    var height = canvasWrapper.offsetHeight;
+    var width = canvasWrapper.offsetWidth;
+    var new_w = height;
+    var new_h = width;
+
+    canvasWrapper.style.width = new_w + 'px';
+    canvasWrapper.style.height = new_h + 'px';
+    canvas.setDimensions({ width: new_w, height: new_h });
+
+    var angleChange = canvas.height >= canvas.width ? 90 : -90;
+
+    var objs = canvas.getObjects();
+    objs.forEach(function (obj) {
+      var angleval = obj.get('angle');
+      var val = angleval + angleChange;
+      val = val % 360;
+
+      var posval = {
+        top: obj.get('top'),
+        left: obj.get('left')
+      };
+
+      var newleft, newtop;
+
+      if (canvas.height >= canvas.width) {
+        newleft = canvas.width - posval.top;
+        newtop = posval.left;
+      } else {
+        newleft = posval.top;
+        newtop = canvas.height - posval.left;
+      }
+
+      obj.rotate(val);
+      obj.set({
+        left: newleft,
+        top: newtop
+      });
+
+      obj.setCoords();
+    });
+  };
 
   return (
     <div id='design-wrapper'>
@@ -70,7 +122,7 @@ const DesignComponent = (props) => {
         ></canvas>
       </div>
 
-      <ToolBar />
+      <ToolBar flipImage={flip} />
     </div>
   );
 };

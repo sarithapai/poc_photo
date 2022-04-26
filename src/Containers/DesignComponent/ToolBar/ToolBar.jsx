@@ -3,7 +3,8 @@ import './ToolBar.scss';
 import { Icons } from '../../../Utils/Icons';
 import { CROP, FLIP } from '../../../Utils/Constants';
 
-const ToolBar = () => {
+const ToolBar = props => {
+  const { flipImage } = props;
   const tools = [
     {
       name: CROP,
@@ -18,11 +19,18 @@ const ToolBar = () => {
       img_url: Icons.addPhotosIcon
     }
   ];
+  const handleClick = option => {
+    if (option.name === FLIP) {
+      flipImage();
+    }
+  };
   return (
     <div className='tool-bar'>
       {tools.map(option => (
         // <div key={option.alt_text}> {option.name}</div>
-        <img key={option.alt_text} alt={option.alt_text} src={option.img_url} />
+        <div key={option.alt_text} onClick={() => handleClick(option)}>
+          <img alt={option.alt_text} src={option.img_url} />
+        </div>
       ))}
     </div>
   );
