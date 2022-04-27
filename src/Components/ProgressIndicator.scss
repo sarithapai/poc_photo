@@ -1,0 +1,38 @@
+
+ .backdrop{
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.5);
+  margin: auto;
+  z-index:1;
+  .progress-indicator-wrapper {
+    background-color: black;
+    // position: fixed;
+    // top: 0;
+    // bottom: 0;
+    // left: 0;
+    // right: 0;
+   
+    width: 80%;
+    height: 100px;
+    position: fixed;
+    top: calc(50% - 50px);
+    left: 10%;
+    margin: auto;
+    border-radius: 10px;
+    .label-wrapper{
+      display: flex;
+      flex-wrap: wrap;
+      padding: 20px 20px 0px;
+      .label{
+        flex: 50%
+      }
+    }
+    div{
+      color:  var(--text-white);
+    }
+  }
+}
