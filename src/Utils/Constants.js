@@ -6,3 +6,6 @@ export const FAILED = 'FAILED';
 
 export const CROP = 'crop';
 export const FLIP = 'flip';
+
+export const FILE_UPLOAD_PROGRESS = 'File upload is in progress';
+export const PROCESSING = 'Processing...';

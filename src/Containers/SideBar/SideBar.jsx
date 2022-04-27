@@ -1,14 +1,24 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import './SideBar.css';
 import { uploadPhoto } from '../../Library/UploadApi';
+// import UploadPhoto from '../../Library/Try.jsx';
+// import { progressValue } from '../../Library/progress';
 import { Icons } from '../../Utils/Icons';
+import { GlobalContext } from '../../Context/GlobalState';
 
 const SideBar = props => {
   const { showSideBar, updateImage } = props;
   const [selectedFile, setSelectedFile] = useState(null);
+  const { updateProgressValue, updateIsUploading, updateIsLoading } =
+    useContext(GlobalContext);
 
   const uploadFile = async file => {
-    let result = await uploadPhoto(file);
+    let result = await uploadPhoto(
+      file,
+      updateProgressValue,
+      updateIsUploading,
+      updateIsLoading
+    );
 
     if (result.image_path) {
       updateImage(result);

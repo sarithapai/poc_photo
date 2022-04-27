@@ -1,14 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import './DesignComponent.scss';
-// import { Icons } from '../../Utils/Icons';
 import { fabric } from 'fabric';
 import TopBar from './TopBar/TopBar.jsx';
 import ToolBar from './ToolBar/ToolBar.jsx';
+import { GlobalContext } from '../../Context/GlobalState';
 // import { downloadCanvas } from '../../Library/Download';
 
-const DesignComponent = (props) => {
+const DesignComponent = props => {
   const { image } = props;
   const [canvas, setCanvas] = useState(null);
+  const { updateIsLoading } = useContext(GlobalContext);
 
   console.log('image', image);
 
@@ -19,8 +20,6 @@ const DesignComponent = (props) => {
   useEffect(() => {
     if (image != null) {
       const image_path = image.image_path;
-      // const image_path =
-      //   'https://d3mx9szhm1i4e3.cloudfront.net/user_photos/images/180499/original/c6dd0286-a971-f96a-25ce-db90aaeafd8e_IMG_20220411_11381720220421-29787-1h47el0-0_1650534293.png?1650534293';
 
       new fabric.Image.fromURL(
         image_path,
@@ -54,6 +53,7 @@ const DesignComponent = (props) => {
           canvasWrapper.style.height = `${canvasHeight}px`;
           canvas.add(img1);
           canvas.renderAll();
+          updateIsLoading(false);
         },
         { crossOrigin: 'Anonymous' }
       );
@@ -82,11 +82,7 @@ const DesignComponent = (props) => {
 
       <div className='canvas-wrapper' id='canvas-wrapper'>
         {' '}
-        <canvas
-          id='viewport'
-          className='canvas'
-          crossorigin='anonymous'
-        ></canvas>
+        <canvas id='viewport' className='canvas'></canvas>
       </div>
 
       <ToolBar flipImage={flip} />
@@ -95,5 +91,3 @@ const DesignComponent = (props) => {
 };
 
 export default DesignComponent;
-
-//

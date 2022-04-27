@@ -1,7 +1,12 @@
 import { getUploadedFile, sendUploadFile } from '../Utils/Api';
 import { ERROR, FAILED, STORE_ID } from '../Utils/Constants';
 
-export const uploadPhoto = async inUploadFile => {
+export const uploadPhoto = async (
+  inUploadFile,
+  updateProgressValue,
+  updateIsUploading,
+  updateIsLoading
+) => {
   let res = {};
   const formData = new FormData();
   formData.append('user_photo[printable_image]', inUploadFile);
@@ -24,6 +29,7 @@ export const uploadPhoto = async inUploadFile => {
         const progressData = Math.round(
           (progressEvent.loaded * 100) / totalLength
         );
+        updateProgressValue(progressData);
         console.log('progressData', progressData);
       }
     }
@@ -36,10 +42,14 @@ export const uploadPhoto = async inUploadFile => {
   //     })
   //     .catch(() => {});
   // });
-
+  updateIsUploading(true);
   let postResponse = await sendUploadFile(formData, config);
 
   try {
+    updateProgressValue(0);
+    updateIsUploading(false);
+    updateIsLoading(true);
+
     res = await getResponse(getUploadedFile, postResponse.data.id, 10000);
     uploadIsCompleted(res);
     return res;
