@@ -1,8 +1,6 @@
 import React, { useState, useContext } from 'react';
 import './SideBar.css';
 import { uploadPhoto } from '../../Library/UploadApi';
-// import UploadPhoto from '../../Library/Try.jsx';
-// import { progressValue } from '../../Library/progress';
 import { Icons } from '../../Utils/Icons';
 import { GlobalContext } from '../../Context/GlobalState';
 
@@ -32,13 +30,13 @@ const SideBar = props => {
           ? 'side-bar-wrapper show-side-bar'
           : 'side-bar-wrapper hide-side-bar'
       }
-      // className='side-bar-wrapper'
     >
       <div className='add-photos'>
         <label>
           <img alt='Add Photos' src={Icons.addPhotosIcon} />
           <input
             type='file'
+            accept='image/*'
             onChange={e => {
               setSelectedFile(e.target.files[0]);
               uploadFile(e.target.files[0]);
