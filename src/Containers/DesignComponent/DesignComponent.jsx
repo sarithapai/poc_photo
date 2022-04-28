@@ -11,8 +11,6 @@ const DesignComponent = props => {
   const [canvas, setCanvas] = useState(null);
   const { updateIsLoading } = useContext(GlobalContext);
 
-  console.log('image', image);
-
   useEffect(() => {
     setCanvas(initCanvas());
   }, []);
@@ -27,14 +25,23 @@ const DesignComponent = props => {
           var designWrapper = document.getElementById('design-wrapper');
           var canvasWrapper = document.getElementById('canvas-wrapper');
 
-          var designWrapperWidth = designWrapper.clientWidth;
-
           let imgWidth = myImg.width;
           let imgHeight = myImg.height;
-          let aspectRatio = imgHeight / imgWidth;
-          let canvasWidth = designWrapperWidth;
 
-          let canvasHeight = designWrapperWidth * aspectRatio;
+          let canvasWidth, canvasHeight, aspectRatio;
+
+          if (imgWidth > imgHeight) {
+            var designWrapperWidth = designWrapper.clientWidth;
+            aspectRatio = imgHeight / imgWidth;
+            canvasWidth = designWrapperWidth;
+            canvasHeight = designWrapperWidth * aspectRatio;
+          } else {
+            var designWrapperHeight = designWrapper.clientHeight - 40;
+            aspectRatio = imgWidth / imgHeight;
+            canvasHeight = designWrapperHeight;
+            canvasWidth = designWrapperHeight * aspectRatio;
+          }
+
           var scaleFactor = canvasWidth / imgWidth;
           var img1 = myImg.set({
             left: 0,
