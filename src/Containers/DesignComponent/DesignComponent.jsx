@@ -36,7 +36,7 @@ const DesignComponent = props => {
             canvasWidth = designWrapperWidth;
             canvasHeight = designWrapperWidth * aspectRatio;
           } else {
-            var designWrapperHeight = designWrapper.clientHeight - 40;
+            var designWrapperHeight = designWrapper.clientHeight - 60;
             aspectRatio = imgWidth / imgHeight;
             canvasHeight = designWrapperHeight;
             canvasWidth = designWrapperHeight * aspectRatio;
@@ -84,12 +84,13 @@ const DesignComponent = props => {
   };
 
   return (
-    <div id='design-wrapper'>
+    <div id='design-component-wrapper'>
       <TopBar />
-
-      <div className='canvas-wrapper' id='canvas-wrapper'>
-        {' '}
-        <canvas id='viewport' className='canvas'></canvas>
+      <div id='design-wrapper'>
+        <div className='canvas-wrapper' id='canvas-wrapper'>
+          {' '}
+          <canvas id='viewport' className='canvas'></canvas>
+        </div>
       </div>
 
       <ToolBar flipImage={flip} />
