@@ -1,12 +1,13 @@
 import "./SideBar.scss";
 import ImageCrop from "./ImageCrop/ImageCrop";
 
-const SideBar = () => {
+const SideBar = (props) => {
+  const { cropImage, selectedIcon } = props;
   return (
     <>
       <div className="SideBar-wrapper">
         SideBar!!
-        <ImageCrop />
+        <ImageCrop cropImage={cropImage} selectedIcon={selectedIcon} />
       </div>
     </>
   );
