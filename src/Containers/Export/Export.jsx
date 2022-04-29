@@ -1,12 +1,12 @@
 import './Export.scss';
 import Preview from './Preview/Preview.jsx';
-import Frame from './Frame/Frame.jsx';
+import SideBar from './SideBar/SideBar.jsx';
 
 const Export = () => {
   return (
     <>
       <div className='export-wrapper'>
-        <Frame />
+        <SideBar />
         <Preview />
       </div>
     </>
