@@ -21,19 +21,10 @@ class Preview extends PureComponent {
     const { crop, src } = this.state;
     console.log(crop);
     return (
-      <div className="preview-wrapper">
-        {/* <div style={{ position: "absolute" }}> */}
-        {/* <img
-            className={"image-preview " + this.props.setCropClass}
-            src="https://i.picsum.photos/id/212/700/700.jpg?hmac=GrEX7n4bVOZt4IjO2_WLLcoiQvPMQT7Sb8QfuXBjKoA"
-          /> */}
-        {/* <img
-            className={"image-preview"}
-            src="https://i.picsum.photos/id/212/700/700.jpg?hmac=GrEX7n4bVOZt4IjO2_WLLcoiQvPMQT7Sb8QfuXBjKoA"
-          /> */}
-        {/* </div> */}
-        {/* <div className={"update-class " + this.props.setCropClass}></div> */}
-        <ReactCrop src={src} crop={crop} onChange={this.onCropChange} />
+      <div className='preview-wrapper'>
+        <ReactCrop src={src} crop={crop} onChange={this.onCropChange}>
+          <img src={src}></img>
+        </ReactCrop>
       </div>
     );
   }
