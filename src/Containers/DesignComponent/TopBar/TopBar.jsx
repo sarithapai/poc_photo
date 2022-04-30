@@ -16,7 +16,7 @@ const TopBar = () => {
             showSideBar();
           }}
         >
-          <img alt='nav-icon' src={Icons.navigation} />
+          <img className='icon' alt='nav-icon' src={Icons.navigation} />
         </div>
         {/* <Tooltip
           placement='right'
@@ -33,7 +33,7 @@ const TopBar = () => {
             downloadCanvas('viewport', 'test.png');
           }}
         >
-          <img alt='nav-icon' src={Icons.shareIcon} />
+          <img className='icon' alt='nav-icon' src={Icons.shareIcon} />
         </div>
       </div>
     </>

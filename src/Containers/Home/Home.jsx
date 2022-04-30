@@ -13,14 +13,12 @@ const Home = () => {
   const [image, setImage] = useState(null);
   const { isUploading, uploadProgressValue, isLoading } =
     useContext(GlobalContext);
-  console.log('isLoading', isLoading);
-  console.log('isUploading:', isUploading);
 
   const toggleSideBar = () => {
-    setShowSideBar(SideBar => !SideBar);
+    setShowSideBar((SideBar) => !SideBar);
   };
 
-  const updateImage = image => {
+  const updateImage = (image) => {
     setImage(image);
   };
 

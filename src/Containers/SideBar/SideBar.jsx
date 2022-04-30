@@ -4,13 +4,13 @@ import { uploadPhoto } from '../../Library/UploadApi';
 import { Icons } from '../../Utils/Icons';
 import { GlobalContext } from '../../Context/GlobalState';
 
-const SideBar = props => {
+const SideBar = (props) => {
   const { showSideBar, updateImage } = props;
   const [selectedFile, setSelectedFile] = useState(null);
   const { updateProgressValue, updateIsUploading, updateIsLoading } =
     useContext(GlobalContext);
 
-  const uploadFile = async file => {
+  const uploadFile = async (file) => {
     let result = await uploadPhoto(
       file,
       updateProgressValue,
@@ -33,11 +33,11 @@ const SideBar = props => {
     >
       <div className='add-photos'>
         <label>
-          <img alt='Add Photos' src={Icons.addPhotosIcon} />
+          <img className='icon' alt='Add Photos' src={Icons.addPhotosIcon} />
           <input
             type='file'
             accept='image/*'
-            onChange={e => {
+            onChange={(e) => {
               setSelectedFile(e.target.files[0]);
               uploadFile(e.target.files[0]);
             }}

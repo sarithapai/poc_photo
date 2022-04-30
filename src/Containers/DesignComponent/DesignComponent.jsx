@@ -4,12 +4,13 @@ import { fabric } from 'fabric';
 import TopBar from './TopBar/TopBar.jsx';
 import ToolBar from './ToolBar/ToolBar.jsx';
 import { GlobalContext } from '../../Context/GlobalState';
-// import { downloadCanvas } from '../../Library/Download';
+import { getCanvasSize, getSceneScaleFactor } from '../../Library/SizeApi';
 
-const DesignComponent = props => {
+const DesignComponent = (props) => {
   const { image } = props;
   const [canvas, setCanvas] = useState(null);
-  const { updateIsLoading } = useContext(GlobalContext);
+  const { updateIsLoading, projectWidth, projectHeight } =
+    useContext(GlobalContext);
 
   useEffect(() => {
     setCanvas(initCanvas());
@@ -25,39 +26,34 @@ const DesignComponent = props => {
           var designWrapper = document.getElementById('design-wrapper');
           var canvasWrapper = document.getElementById('canvas-wrapper');
 
-          let imgWidth = myImg.width;
-          let imgHeight = myImg.height;
+          const canvasSize = getCanvasSize(
+            designWrapper.clientWidth,
+            designWrapper.clientHeight - 40,
+            { width: projectWidth, height: projectHeight },
+            myImg
+          );
+          let scaleFactor = getSceneScaleFactor(
+            designWrapper.clientWidth,
+            designWrapper.clientHeight - 40,
+            { width: projectWidth, height: projectHeight },
+            myImg
+          );
 
-          let canvasWidth, canvasHeight, aspectRatio;
-
-          if (imgWidth > imgHeight) {
-            var designWrapperWidth = designWrapper.clientWidth;
-            aspectRatio = imgHeight / imgWidth;
-            canvasWidth = designWrapperWidth;
-            canvasHeight = designWrapperWidth * aspectRatio;
-          } else {
-            var designWrapperHeight = designWrapper.clientHeight - 60;
-            aspectRatio = imgWidth / imgHeight;
-            canvasHeight = designWrapperHeight;
-            canvasWidth = designWrapperHeight * aspectRatio;
-          }
-
-          var scaleFactor = canvasWidth / imgWidth;
           var img1 = myImg.set({
             left: 0,
             top: 0,
             originX: 'left',
             originY: 'top',
-            width: imgWidth,
-            height: imgHeight,
+            width: myImg.width,
+            height: myImg.height,
             scaleX: scaleFactor,
             scaleY: scaleFactor,
           });
 
-          canvas.setWidth(canvasWidth);
-          canvas.setHeight(canvasHeight);
-          canvasWrapper.style.width = `${canvasWidth}px`;
-          canvasWrapper.style.height = `${canvasHeight}px`;
+          canvas.setWidth(canvasSize.width);
+          canvas.setHeight(canvasSize.height);
+          canvasWrapper.style.width = `${canvasSize.width}px`;
+          canvasWrapper.style.height = `${canvasSize.height}px`;
           canvas.add(img1);
           canvas.renderAll();
           updateIsLoading(false);
@@ -71,7 +67,7 @@ const DesignComponent = props => {
     new fabric.Canvas('viewport', {
       preserveObjectStacking: true,
       backgroundColor: '#ffffff',
-      includeDefaultValues: true
+      includeDefaultValues: true,
     });
 
   const flip = () => {

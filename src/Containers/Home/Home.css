@@ -1,22 +1,20 @@
 /* $bgPrimary: rgb(60, 60, 60); */
-body{
+body {
   --primary-background: #181818;
   /* --secondary-background: #5a5858; */
   --secondary-background: #2d2d2d;
   --text-white: #dadada;
 }
-.main-wrapper{
+.main-wrapper {
   color: var(--text-white);
   height: 100vh;
   /* grid-template-columns: 20% auto; */
   background-color: var(--primary-background);
   transition: 0.5s;
   display: flex;
- 
 }
 
-img {
+.icon {
   width: 30px;
   height: 30px;
 }
-
