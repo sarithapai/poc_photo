@@ -36,3 +36,10 @@
     transform: rotate(360deg);
   }
 }
+
+body{
+  --primary-background: #181818;
+  /* --secondary-background: #5a5858; */
+  --secondary-background: #2d2d2d;
+  --text-white: #dadada;
+}
