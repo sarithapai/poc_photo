@@ -12,3 +12,8 @@ export const PROCESSING = 'Processing...';
 
 export const DEFAULT_PROJECT_WIDTH = 144;
 export const DEFAULT_PROJECT_HEIGHT = 96;
+
+export const PAGE_EDIT_PHOTO = 0;
+export const PAGE_CREATE_PROJECT = 1;
+export const PAGE_SIZE_SELECTION = 2;
+export const PAGE_FRAME_SELECTION = 3;

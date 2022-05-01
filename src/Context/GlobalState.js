@@ -11,6 +11,7 @@ const initialState = {
   isLoading: false,
   projectWidth: DEFAULT_PROJECT_WIDTH,
   projectHeight: DEFAULT_PROJECT_HEIGHT,
+  activePageIndex: 0,
 };
 
 export const GlobalContext = createContext(initialState);
@@ -41,6 +42,13 @@ export const GlobalProvider = ({ children }) => {
     });
   }
 
+  function setActivePageIndex(index) {
+    dispatch({
+      type: 'SET_ACTIVE_PAGE_INDEX',
+      payload: index,
+    });
+  }
+
   return (
     <GlobalContext.Provider
       value={{
@@ -49,9 +57,11 @@ export const GlobalProvider = ({ children }) => {
         isLoading: state.isLoading,
         projectWidth: state.projectWidth,
         projectHeight: state.projectHeight,
+        activePageIndex: state.activePageIndex,
         updateProgressValue,
         updateIsUploading,
         updateIsLoading,
+        setActivePageIndex,
       }}
     >
       {children}

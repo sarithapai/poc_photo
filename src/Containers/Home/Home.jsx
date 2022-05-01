@@ -5,13 +5,20 @@ import SideBar from '../SideBar/SideBar.jsx';
 import './Home.css';
 import { useState, createContext } from 'react';
 import { GlobalContext } from '../../Context/GlobalState';
-import { FILE_UPLOAD_PROGRESS, PROCESSING } from '../../Utils/Constants';
+import {
+  FILE_UPLOAD_PROGRESS,
+  PAGE_EDIT_PHOTO,
+  PAGE_SIZE_SELECTION,
+  PROCESSING,
+} from '../../Utils/Constants';
+import Export from '../Export/Export';
+
 export const sideBarContext = createContext();
 
 const Home = () => {
   const [showSideBar, setShowSideBar] = useState(true);
   const [image, setImage] = useState(null);
-  const { isUploading, uploadProgressValue, isLoading } =
+  const { isUploading, uploadProgressValue, isLoading, activePageIndex } =
     useContext(GlobalContext);
 
   const toggleSideBar = () => {
@@ -34,12 +41,16 @@ const Home = () => {
 
       {isLoading === true ? <ProgressIndicator label={PROCESSING} /> : null}
 
-      <div className='main-wrapper'>
-        <SideBar showSideBar={showSideBar} updateImage={updateImage} />
-        <sideBarContext.Provider value={toggleSideBar}>
-          <DesignComponent image={image} />
-        </sideBarContext.Provider>
-      </div>
+      {activePageIndex == PAGE_EDIT_PHOTO ? (
+        <div className='main-wrapper'>
+          <SideBar showSideBar={showSideBar} updateImage={updateImage} />
+          <sideBarContext.Provider value={toggleSideBar}>
+            <DesignComponent image={image} />
+          </sideBarContext.Provider>
+        </div>
+      ) : activePageIndex == PAGE_SIZE_SELECTION ? (
+        <Export />
+      ) : null}
     </>
   );
 };

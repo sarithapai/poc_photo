@@ -6,19 +6,23 @@ export default (state, action) => {
     case 'UPDATE_PROGRESS_VALUE':
       return {
         ...state,
-        uploadProgressValue: action.payload
+        uploadProgressValue: action.payload,
       };
     case 'UPDATE_IS_UPLOADING':
       return {
         ...state,
-        isUploading: action.payload
+        isUploading: action.payload,
       };
     case 'UPDATE_IS_LOADING':
       return {
         ...state,
-        isLoading: action.payload
+        isLoading: action.payload,
       };
-
+    case 'SET_ACTIVE_PAGE_INDEX':
+      return {
+        ...state,
+        activePageIndex: action.payload,
+      };
     default:
       return state;
   }

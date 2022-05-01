@@ -3,10 +3,14 @@ import './TopBar.scss';
 import { Icons } from '../../../Utils/Icons';
 import { sideBarContext } from '../../Home/Home.jsx';
 import { downloadCanvas } from '../../../Library/Download';
+import { GlobalContext } from '../../../Context/GlobalState';
+import { PAGE_SIZE_SELECTION } from '../../../Utils/Constants';
 // import { Tooltip } from 'reactstrap';
 
 const TopBar = () => {
   const showSideBar = useContext(sideBarContext);
+  const { setActivePageIndex } = useContext(GlobalContext);
+
   return (
     <>
       <div className='top-bar'>
@@ -30,7 +34,8 @@ const TopBar = () => {
         <div
           className='top-bar-options'
           onClick={() => {
-            downloadCanvas('viewport', 'test.png');
+            // downloadCanvas('viewport', 'test.png');
+            setActivePageIndex(PAGE_SIZE_SELECTION);
           }}
         >
           <img className='icon' alt='nav-icon' src={Icons.shareIcon} />
