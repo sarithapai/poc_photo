@@ -8,6 +8,7 @@ import { GlobalContext } from '../../Context/GlobalState';
 import {
   FILE_UPLOAD_PROGRESS,
   PAGE_EDIT_PHOTO,
+  PAGE_FRAME_SELECTION,
   PAGE_SIZE_SELECTION,
   PROCESSING,
 } from '../../Utils/Constants';
@@ -48,7 +49,8 @@ const Home = () => {
             <DesignComponent image={image} />
           </sideBarContext.Provider>
         </div>
-      ) : activePageIndex == PAGE_SIZE_SELECTION ? (
+      ) : activePageIndex == PAGE_SIZE_SELECTION ||
+        activePageIndex == PAGE_FRAME_SELECTION ? (
         <Export />
       ) : null}
     </>
