@@ -1,13 +1,13 @@
-import React, { PureComponent } from "react";
-import ReactCrop from "react-image-crop";
-import "react-image-crop/src/ReactCrop.scss";
+import React, { PureComponent } from 'react';
+import ReactCrop from 'react-image-crop';
+import 'react-image-crop/src/ReactCrop.scss';
 
-import "./Preview.scss";
+import './Preview.scss';
 class Preview extends PureComponent {
   state = {
-    src: "https://i.picsum.photos/id/212/700/700.jpg?hmac=GrEX7n4bVOZt4IjO2_WLLcoiQvPMQT7Sb8QfuXBjKoA",
+    src: 'https://i.picsum.photos/id/212/700/700.jpg?hmac=GrEX7n4bVOZt4IjO2_WLLcoiQvPMQT7Sb8QfuXBjKoA',
     crop: {
-      unit: "%",
+      unit: '%',
       width: 300,
       aspect: 16 / 9,
     },
@@ -20,10 +20,11 @@ class Preview extends PureComponent {
   render() {
     const { crop, src } = this.state;
     console.log(crop);
+    const canvas = document.getElementById('viewport');
     return (
       <div className='preview-wrapper'>
         <ReactCrop src={src} crop={crop} onChange={this.onCropChange}>
-          <img src={src}></img>
+          <img src={canvas.toDataURL()}></img>
         </ReactCrop>
       </div>
     );
