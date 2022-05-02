@@ -6,7 +6,7 @@ import './Preview.scss';
 import {
   FRAMED,
   PAGE_SIZE_SELECTION,
-  PAGE_FRAME_SELECTION
+  PAGE_FRAME_SELECTION,
 } from '../../../Utils/Constants';
 
 const Preview = () => {
@@ -15,15 +15,15 @@ const Preview = () => {
     activePageIndex,
     frameColor,
     frameMatting,
-    selectedFrameType
+    selectedFrameType,
   } = useContext(GlobalContext);
   const [crop, setCrop] = useState({
     unit: '%',
     width: 300,
-    aspect: 16 / 9
+    aspect: 16 / 9,
   });
 
-  const onCropChange = inCrop => {
+  const onCropChange = (inCrop) => {
     setCrop(inCrop);
   };
 
@@ -31,7 +31,7 @@ const Preview = () => {
     <div className='preview-wrapper'>
       {activePageIndex === PAGE_SIZE_SELECTION ? (
         <ReactCrop crop={crop} onChange={onCropChange}>
-          <img src={preview} alt=''></img>
+          <img className='preview-image' src={preview} alt=''></img>
         </ReactCrop>
       ) : activePageIndex === PAGE_FRAME_SELECTION ? (
         selectedFrameType === FRAMED ? (
@@ -39,7 +39,7 @@ const Preview = () => {
             className='frame'
             style={{
               border: '18px solid ' + frameColor,
-              padding: frameMatting + 'px'
+              padding: frameMatting + 'px',
             }}
           >
             <img
