@@ -19,7 +19,7 @@ const SideBar = (props) => {
 
   return (
     <>
-      <div className="SideBar-wrapper">
+      <div className="sideBar-wrapper">
         {activePageIndex == PAGE_SIZE_SELECTION ? (
           <ImageCrop
             cropImage={cropImage}
@@ -30,7 +30,9 @@ const SideBar = (props) => {
         ) : activePageIndex == PAGE_FRAME_SELECTION ? (
           <Frame />
         ) : null}
-        <button onClick={navigateToNextPage}>Next</button>
+        <span className="next-button" onClick={navigateToNextPage}>
+          Next
+        </span>
       </div>
     </>
   );
