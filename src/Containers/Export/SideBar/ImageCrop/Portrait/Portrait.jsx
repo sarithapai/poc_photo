@@ -39,11 +39,18 @@ class Portrait extends Component {
                 className="img-icon-size portrait-icon"
                 src="portrait-icon.png"
               />
+              <div
+                className={
+                  resolution[0] == this.state.selected
+                    ? "triangle"
+                    : "hide-image"
+                }
+              ></div>
               <img
                 className={
                   resolution[0] == this.state.selected
                     ? "img-icon-size checkmark"
-                    : "img-icon-size checkmark hide-image"
+                    : "hide-image"
                 }
                 src="checkmark.png"
               />

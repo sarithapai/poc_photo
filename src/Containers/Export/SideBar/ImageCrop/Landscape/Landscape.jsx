@@ -36,11 +36,18 @@ class Landscape extends Component {
           >
             <div className="parent">
               <img className="img-icon-size" src="landscape-icon.png" />
+              <div
+                className={
+                  resolution[0] == this.state.selected
+                    ? "triangle"
+                    : "hide-image"
+                }
+              ></div>
               <img
                 className={
                   resolution[0] == this.state.selected
                     ? "img-icon-size checkmark"
-                    : "img-icon-size checkmark hide-image"
+                    : "hide-image"
                 }
                 src="checkmark.png"
               />

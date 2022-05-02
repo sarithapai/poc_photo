@@ -21,3 +21,18 @@
 .hide-image {
   display: none;
 }
+
+.triangle {
+  width: 35px;
+  height: 35px;
+  position: absolute;
+  top: -20px;
+  left: -20px;
+  background: linear-gradient(
+    to bottom right,
+    #3498db 0%,
+    #3498db 50%,
+    #23292e 50%,
+    #23292e 100%
+  );
+}
