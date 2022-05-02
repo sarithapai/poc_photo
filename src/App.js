@@ -1,6 +1,6 @@
-import './App.css';
-import Home from './Containers/Home/Home.jsx';
-import { GlobalProvider } from './Context/GlobalState';
+import "./App.css";
+import Home from "./Containers/Home/Home.jsx";
+import { GlobalProvider } from "./Context/GlobalState";
 
 function App() {
   return (

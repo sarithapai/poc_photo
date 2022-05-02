@@ -1,51 +1,32 @@
 import "./ImageCrop.scss";
-import React, { Component } from "react";
+import React, { useState } from "react";
+import Select from "react-select";
+import Portrait from "./Portrait/Portrait";
+import Landscape from "./Landscape/Landscape";
 
-class ImageCrop extends Component {
-  state = {
-    resolutions: [
-      [1, "12x16", "304.8 x 406.4 mm"],
-      [2, "16x24", "406.4 x 609.6 mm"],
-      [3, "20x40", "508 x 1016 mm"],
-    ],
-    selected: 0,
-  };
+const ImageCrop = (props) => {
+  const { cropImage, selectedCrop, handleChange } = props;
 
-  selected = (id) => {
-    this.setState({ selected: id });
-  };
+  const cropType = [
+    { label: "Portrait", value: "Portrait" },
+    { label: "Landscape", value: "Landscape" },
+  ];
 
-  render() {
-    const { cropImage } = this.props;
-    return (
-      <div className="grid-container">
-        {this.state.resolutions.map((resolution) => (
-          <div
-            className={
-              resolution[0] == this.state.selected
-                ? "grid-item selected"
-                : "grid-item"
-            }
-            // className="grid-item"
-            key={resolution[0]}
-            onClick={() => {
-              cropImage(resolution[0]);
-              this.selected(resolution[0]);
-            }}
-          >
-            <div>
-              <img className="img-icon-size" src="potrait-icon.png" />
-            </div>
-            <div className="text-description">
-              <span>{resolution[1]}</span>
-              <br />
-              <span>{resolution[2]}</span>
-            </div>
-          </div>
-        ))}
-      </div>
-    );
-  }
-}
+  return (
+    <div className="select-block">
+      <Select
+        className="dropdown"
+        options={cropType}
+        placeholder={"Portrait"}
+        onChange={handleChange}
+      />{" "}
+      {selectedCrop == "Portrait" ? (
+        <Portrait cropImage={cropImage} />
+      ) : (
+        <Landscape cropImage={cropImage} />
+      )}
+    </div>
+  );
+};
 
 export default ImageCrop;

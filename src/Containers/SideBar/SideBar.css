@@ -1,17 +1,15 @@
-.side-bar-wrapper{
+.side-bar-wrapper {
   background-color: var(--secondary-background);
   transition: 0.5s;
-  
 }
 
 .show-side-bar {
   width: 30vw;
-  max-width: 300px
- } 
- 
-.hide-side-bar{
+  max-width: 300px;
+}
+
+.hide-side-bar {
   width: 0px;
-  
 }
 
 .add-photos {
@@ -19,15 +17,19 @@
   padding: 10px 5%;
   cursor: pointer !important;
 }
+
 .add-photos > * {
   cursor: pointer;
 }
+
 .add-photos:hover {
   background-color: var(--primary-background);
 }
+
 .add-photos > label {
   display: flex;
 }
+
 .add-photos > label > span {
   margin-left: 10px;
   line-height: 30px;

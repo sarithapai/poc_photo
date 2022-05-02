@@ -1,15 +1,15 @@
-import './SideBar.scss';
-import ImageCrop from './ImageCrop/ImageCrop';
-import Frame from './Frame/Frame.jsx';
-import { useContext } from 'react';
-import { GlobalContext } from '../../../Context/GlobalState';
+import "./SideBar.scss";
+import ImageCrop from "./ImageCrop/ImageCrop";
+import Frame from "./Frame/Frame.jsx";
+import { useContext } from "react";
+import { GlobalContext } from "../../../Context/GlobalState";
 import {
   PAGE_FRAME_SELECTION,
   PAGE_SIZE_SELECTION,
-} from '../../../Utils/Constants';
+} from "../../../Utils/Constants";
 
 const SideBar = (props) => {
-  const { cropImage, selectedIcon } = props;
+  const { cropImage, selectedIcon, selectedCrop, handleChange } = props;
 
   const { activePageIndex, setActivePageIndex } = useContext(GlobalContext);
 
@@ -17,12 +17,16 @@ const SideBar = (props) => {
     setActivePageIndex(activePageIndex + 1);
   };
 
-
   return (
     <>
-      <div className='SideBar-wrapper'>
+      <div className="SideBar-wrapper">
         {activePageIndex == PAGE_SIZE_SELECTION ? (
-          <ImageCrop cropImage={cropImage} selectedIcon={selectedIcon} />
+          <ImageCrop
+            cropImage={cropImage}
+            selectedIcon={selectedIcon}
+            selectedCrop={selectedCrop}
+            handleChange={handleChange}
+          />
         ) : activePageIndex == PAGE_FRAME_SELECTION ? (
           <Frame />
         ) : null}
