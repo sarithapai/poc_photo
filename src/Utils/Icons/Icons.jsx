@@ -5,5 +5,6 @@ export const Icons = {
   crop: require('./crop.png'),
   flip: require('./flip.png'),
   framed: require('./framed.png'),
-  unframed: require('./unframed.png')
+  unframed: require('./unframed.png'),
+  back: require('./back.png')
 };

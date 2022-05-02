@@ -39,3 +39,6 @@ export const FRAME_MATTINGS = {
 
 export const FRAMED = 'Framed';
 export const UNFRAMED = 'Unframed';
+
+export const CHOOSE_IMAGE_SIZE = 'Choose you image size';
+export const CHOOSE_FRAME_OPTION = 'Choose your framing option';
