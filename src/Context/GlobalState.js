@@ -12,6 +12,7 @@ const initialState = {
   projectWidth: DEFAULT_PROJECT_WIDTH,
   projectHeight: DEFAULT_PROJECT_HEIGHT,
   activePageIndex: 0,
+  preview: null,
 };
 
 export const GlobalContext = createContext(initialState);
@@ -49,6 +50,13 @@ export const GlobalProvider = ({ children }) => {
     });
   }
 
+  function setPreview(inPreviewData) {
+    dispatch({
+      type: 'SET_PREVIEW',
+      payload: inPreviewData,
+    });
+  }
+
   return (
     <GlobalContext.Provider
       value={{
@@ -58,10 +66,12 @@ export const GlobalProvider = ({ children }) => {
         projectWidth: state.projectWidth,
         projectHeight: state.projectHeight,
         activePageIndex: state.activePageIndex,
+        preview: state.preview,
         updateProgressValue,
         updateIsUploading,
         updateIsLoading,
         setActivePageIndex,
+        setPreview,
       }}
     >
       {children}

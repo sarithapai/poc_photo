@@ -2,14 +2,13 @@ import React, { useContext } from 'react';
 import './TopBar.scss';
 import { Icons } from '../../../Utils/Icons';
 import { sideBarContext } from '../../Home/Home.jsx';
-import { downloadCanvas } from '../../../Library/Download';
 import { GlobalContext } from '../../../Context/GlobalState';
 import { PAGE_SIZE_SELECTION } from '../../../Utils/Constants';
 // import { Tooltip } from 'reactstrap';
 
 const TopBar = () => {
   const showSideBar = useContext(sideBarContext);
-  const { setActivePageIndex } = useContext(GlobalContext);
+  const { setActivePageIndex, setPreview } = useContext(GlobalContext);
 
   return (
     <>
@@ -35,6 +34,8 @@ const TopBar = () => {
           className='top-bar-options'
           onClick={() => {
             // downloadCanvas('viewport', 'test.png');
+            const previewData = document.getElementById('viewport').toDataURL();
+            setPreview(previewData);
             setActivePageIndex(PAGE_SIZE_SELECTION);
           }}
         >

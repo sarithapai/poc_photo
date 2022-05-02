@@ -23,6 +23,11 @@ export default (state, action) => {
         ...state,
         activePageIndex: action.payload,
       };
+    case 'SET_PREVIEW':
+      return {
+        ...state,
+        preview: action.payload,
+      };
     default:
       return state;
   }
