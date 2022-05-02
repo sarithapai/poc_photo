@@ -3,5 +3,7 @@ export const Icons = {
   shareIcon: require('./export.png'),
   navigation: require('./navigation.png'),
   crop: require('./crop.png'),
-  flip: require('./flip.png')
+  flip: require('./flip.png'),
+  framed: require('./framed.png'),
+  unframed: require('./unframed.png')
 };
